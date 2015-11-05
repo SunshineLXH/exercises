@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<style>
+	#oUl{
+		width:200px;
+		height:200px;
+		border:1px solid #ccc;
+	}
+	</style>
+	<script>
+	function $(selector,content){
+		var firstChar=selector.charAt(0);
+		var obj=content||document;
+		if(firstChar=="#"){
+			return document.getElementById(selector.slice(1));
+		}else{
+			return obj.getElementsByTagName(selector);
+		}
+	}
+	window.onload=function(){
+		var oUl=$("#oUl");
+		var oLi=oUl.getElementsByTagName("li");
+		//var oLi=$("li");
+		alert(oLi.length)
+	}
+	</script>
+</head>
+<body>
+	<div>
+		<ul id="oUl">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+	</div>
+</body>
+</html>

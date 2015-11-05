@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<style>
+	#oDiv{
+		width:210px;
+		height:220px;
+		border:1px solid #ccc;
+	}
+	#oUl{
+		width:100px;
+		height:150px;
+		border:1px solid #ccc;
+		background:yellow;
+	}
+	li{
+		width:40px;
+		height:40px;
+		background:#ccc;
+	}
+	</style>
+	<script>
+	//$封装
+	function $(selector,content){
+		//拿到selector的第一个字符
+		var firstChar = selector.charAt(0); 
+		var obj = content || document;
+		if( firstChar === "#" ){
+			return document.getElementById(selector.slice(1));
+		}else{
+			return obj.getElementsByTagName(selector);
+		}	
+	};
+	//getStyle封装
+	function getStyle(obj,attr){
+		if(obj.currentStyle){
+			return obj.currentStyle[attr];
+		}else{
+			return getComputedStyle(obj,false)[attr];
+		}
+	};
+	window.onload=function(){
+		var oDiv=$("#oDiv");
+		var oUl=$("#oUl");
+		var oLi=$("li");
+		// alert(oDiv.style.width);//空
+		// alert(oUl.style.width);//空
+		// alert(oLi[0].style.height);//空
+		// alert(getStyle(oDiv,"width"));//210px
+		// alert(getStyle(oDiv,"height"));//22px
+		// alert(getStyle(oUl,"width"));//100px
+		// alert(getStyle(oUl,"background"));//rgb(255,255,0) none repeat scroll 0% 0% /auto padding-box border-box
+		alert(getStyle(oLi[0],"width"));//40px
+		alert(getStyle(oLi[1],"height"));//40px
+		alert(getStyle(oLi[0]),"background");//undefined?
+	}
+	</script>
+</head>
+<body>
+	<div id="oDiv">
+		<ul id="oUl">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+	</div>
+</body>
+</html>

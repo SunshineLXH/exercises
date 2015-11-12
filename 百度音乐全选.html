@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>百度音乐的全选操作</title>
+	<style>
+	html,body,ul{
+		margin:0;
+		padding:0;
+	}
+	li{
+		list-style:none;
+	}
+	#songs{
+		border:1px solid #ccc;
+		width:400px;
+		margin:20px auto;
+		font-size:14px;
+	}
+	#list li{
+		height:30px;
+		line-height:30px;
+	}
+	#toolbar{
+		border-top:1px solid #dedede;
+		border-bottom:2px solid #424242;
+		width:100%;
+		height:35px;
+		line-height:35px;
+	}
+	#toolbar li{
+		float:left;
+		width:100px;
+		text-align:left;
+	}
+	#toolbar .button{
+		border:1px solid #cecece;
+		height:20px;
+		line-height:24px;
+		margin:6px 5px;
+		text-align:center;
+		width:60px;
+		border-radius:5px;
+		opacity:0.5;
+	}
+	#list .title{
+		display:inline-block;
+		width:280px;
+	}
+	.gray{
+		background:#ccc;
+	}
+	.blue{
+		background:#e0ffff;
+	}
+	.white{
+		background:white;
+	}
+	</style>
+	<script>
+	//封装获取元素函数
+	function $(selector,content){
+		var firstChar=selector.charAt(0);
+		if(firstChar==="#"){
+			return document.getElementById(selector.slice(1));
+		}else{
+			content=content||document;
+			return content.getElementsByTagName(selector);
+		}
+	}
+	window.onload=function(){
+		//获取元素
+		var oLi=$("li",$("#list"));
+		var allChecked=$("#allChecked");
+		var aInput=$("input",$("#list"));
+		for(var i=0;i<oLi.length;i++){//循环所有
+			oLi[i].index=i;
+			//初始为隔行变色
+			if(i%2==0){
+				oLi[i].className="blue";
+			}else{
+				oLi[i].className="white";
+			}
+			//每个li点击时
+			oLi[i].onclick=function(){
+				//如果此行按钮选中则灰，否则为初始
+				if(aInput[this.index].checked){
+					this.className="gray";
+				}else{
+					if(this.index%2==0){
+						this.className="blue";
+					}else{
+						this.className="white";
+					}
+				}
+				//每次点击循环所有若选中=长度则全选为true，否则为false
+				var n=0;
+				for(var i=0;i<aInput.length;i++){
+					if(aInput[i].checked){
+						n++;
+					}
+					if(n==aInput.length){
+						allChecked.checked=true;
+					}else{
+						allChecked.checked=false;
+					}
+				}
+			}
+		}
+		//全选,点击时判断若为选中则所有为选中，否则初始
+		allChecked.onclick=function(){
+			if(allChecked.checked){
+				for(var i=0;i<oLi.length;i++){
+					oLi[i].className="gray";
+					aInput[i].checked=true;
+				}
+			}else{
+				for(var i=0;i<oLi.length;i++){
+					aInput[i].checked=false;
+					if(i%2==0){
+						oLi[i].className="blue";
+					}else{
+						oLi[i].className="white";
+					}
+				}
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="songs">
+		<ul id="list">
+			<li>
+				<input type="checkbox"/>
+				<span class="title">私奔</span>
+				<span class="singer">梁博</span>
+			</li>
+			<li>
+				<input type="checkbox"/>
+				<span class="title">北京北京</span>
+				<span class="singer">梁博、黄勇</span>
+			</li>
+			<li>
+				<input type="checkbox"/>
+				<span class="title">我爱你中国</span>
+				<span class="singer">梁博</span>
+			</li>
+			<li>
+				<input type="checkbox"/>
+				<span class="title">花火</span>
+				<span class="singer">梁博</span>
+			</li>
+			<li>
+				<input type="checkbox"/>
+				<span class="title">回来</span>
+				<span class="singer">梁博</span>
+			</li>
+			<li>
+				<input type="checkbox"/>
+				<span class="title">爱要有你才完美</span>
+				<span class="singer">梁博、那英</span>
+			</li>
+		</ul>
+		<ul id="toolbar">
+			<li>
+				<input id="allChecked" type="checkbox">
+				全选
+			</li>
+			<li>
+				<div class="button" id="favorite">收藏</div>
+			</li>
+			<li>
+				<div class="button" id="add">添加</div>
+			</li>
+			<li>
+				<div class="button" id="delete">删除</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

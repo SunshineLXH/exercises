@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>2.带缩略图的图片转换</title>
+  <style>
+	  body,ul,h2{ 
+	  	padding: 0;
+	  	margin: 0;
+	  }
+	  li{
+	  	list-style: none;
+	  }
+	  .wrap{
+	  	margin:20px auto;
+	  	width: 513px;
+	  	height: 393px;
+	  	background: #ceb58c;
+	  }
+	  #tab h2{
+	  	font-size: 18px;
+	  	line-height: 36px;
+	  	color:#fff;
+	  	text-indent: 1em;
+	  }
+	  #tab #box{
+	  	width:492px; 
+	  	height:328px;
+	  	position:relative;
+	  	margin:0 auto;
+	  }
+	  #ul img{
+	  	display: none;
+	  }
+	  #tab a{
+	  	font-size: 40px;
+	  	width: 50px;
+	  	height: 50px;
+	  	line-height: 50px;
+	  	border-radius: 50%;
+	  	background: #ceb58c;
+	  	position: absolute;
+	  	top:140px;
+	  	text-align: center;
+	  	color: #fff;
+	  	opacity: 0.5;
+	  	cursor:pointer;
+	  }
+	  #tab a:hover{
+	  	opacity: 1;
+	  }
+	  #tab #prev{
+	  	left: 10px;
+	  }
+	  #tab #next{
+	  	left:432px;
+	  }
+	  #tab ul{
+	  	text-align: center;
+	  	height: 32px;
+	  	margin: 8px auto;
+	  	width: 120px;
+	  }
+	  #tab li{
+	  	float: left;
+	  	width: 10px;
+	  	height: 10px;
+	  	border-radius:50%;
+	  	background: #fff;
+	  	margin-left: 6px;
+	  	line-height: 32px;
+	  	position: relative;
+	  }
+	  #tab li img{
+	  	display: none;
+	  	width: 110px;
+	  	height: 63px;
+	  	position: absolute;
+	  	left: -55px;
+	  	top: -98px;
+	  	padding: 12px 5px;
+	  	background: #fff;
+	  }
+	  #tab li div{
+	  	display: none;
+	  	position: absolute;
+	  	left:-3px; 
+	  	top:-12px;
+	  	width: 0;
+	  	height: 0;
+	  	border-style: solid;
+	  	border-width:10px 8px 0;
+	  	border-color:#fff transparent transparent;
+	  }
+	  #tab .active{
+	  	display: block;
+	  }
+	  #tab .num_active{
+	  	background: yellow;
+	  }
+	  #tab .num_active2{
+	  	background: blue;
+	  }
+	  #tab .white{
+	  	background: #fff;
+	  }
+	  #changeImg {
+	  	position: absolute;
+	  	left: 0px;
+	  	top:0px;
+	  	width: 10000px;
+	  	transition: 1s;
+	  }
+	  #changeImg img{
+	  	float: left;
+	  }
+	  #box {
+	  	overflow: hidden;
+	  }
+  </style>
+  <script type="text/javascript">
+  //封装$函数
+function $(selector,content){
+	var firstChar=selector.charAt(0);
+	var obj=content||document;
+	if(firstChar==="#"){
+		return document.getElementById(selector.slice(1));
+	}else{
+		return obj.getElementsByTagName(selector);
+	}
+}
+window.onload=function(){
+	//获取元素
+	var oPre=$("#prev");
+	var oNext=$("#next");
+	var oBigimg=$("#changeImg");
+	var aImg=$("img",oBigimg);
+	oBigimg.style.left=0;//初始化
+	var m,n;
+	//下一个点击
+	oNext.onclick=function(){
+		n=parseFloat(oBigimg.style.left)-492;
+		if(n<-1968){
+			n=0;
+		}
+		oBigimg.style.left=n+"px";
+		oTb();
+	}
+	//自定义函数，除上492，得到下标，更改小图标样式
+	function oTb(){
+		m=Math.abs(n/492);
+		for(var j=0;j<oLi.length;j++){
+			oLi[j].style.background="";
+			oLi[j].className="";
+		}
+		oLi[m].style.background="yellow";
+	}
+	//上一个点击
+	oPre.onclick=function(){
+		n=parseFloat(oBigimg.style.left)+492;
+		if(n>0){
+			n=-1968;
+		}
+		oBigimg.style.left=n+"px";
+		oTb();
+	}
+	//获取元素
+	var oLi=$("li",$("#ul"));
+	var oSmallimg=$("img",$("#ul"));
+	var oDivbottom=$("div",$("#ul"));
+	for(var i=0;i<oLi.length;i++){
+		oLi[i].index=i;
+		//小图标点击
+		oLi[i].onclick=function(){
+			for(var j=0;j<oLi.length;j++){
+				oLi[j].style.background="";
+				oLi[j].className="";
+			}
+			oLi[this.index].style.background="yellow";
+			oBigimg.style.left=this.index*(-492)+"px";
+		}
+		//小图标鼠标移入
+		oLi[i].onmouseover=function(){
+			oSmallimg[this.index].style.display="block";
+			oDivbottom[this.index].style.display="block";
+		}
+		//小图标鼠标移开
+		oLi[i].onmouseout=function(){
+			oSmallimg[this.index].style.display="none";
+			oDivbottom[this.index].style.display="none";
+		}
+	}
+}
+  </script>
+ </head>
+ <body>
+  <div class="wrap" id="tab">
+  	<h2>带缩略图的图片转换</h2>
+  	<div id="box">
+  		<div id="changeImg">
+  			<img src="./images/img1.png" class="active"/>
+  			<img src="./images/img2.png" />
+  			<img src="./images/img3.png" />
+  			<img src="./images/img4.png" />
+  			<img src="./images/img5.png" />
+  		</div>
+  		<a herf="javascript:;" id="prev"><</a>
+  		<a herf="javascript:;" id="next">></a>
+  	</div>
+  	<ul id="ul">
+  		<li class="num_active"><img src="./images/img1.png" /><div></div></li>
+  		<li><img src="./images/img2.png" /><div></div></li>
+  		<li><img src="./images/img3.png" /><div></div></li>
+  		<li><img src="./images/img4.png" /><div></div></li>
+  		<li><img src="./images/img5.png" /><div></div></li>
+  	</ul>
+  </div>
+ </body>
+</html>

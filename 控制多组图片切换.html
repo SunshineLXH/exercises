@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			font-family: "微软雅黑";
+		}
+	    .bg{
+	    	width:871px;
+	    	height: 553px;
+	    	background: url(./img/img/bg.jpg) no-repeat;
+	    	margin: 0 auto;
+	    }
+	    #oDiv1{
+	    	position:relative;
+	    	top: 128px;
+	    	left: 45px;
+	    	width: 447px;
+	    	height: 295px;
+	    	float: left;
+	    }
+	    span{
+	    	position: absolute;
+	    	left: -11px;
+	    	bottom: 5px;
+	    }
+	    #oDiv1 img{
+	    	width:447px ;
+	    	height: 245px;
+	    	position: absolute;
+	    }
+	    p{
+	    	position: absolute;
+	    	top: 86%;
+	    	left: 35%;
+	    }
+	    #oDiv2{
+	    	height: 295px;
+	    	width: 248px;
+	    	position:relative;
+	    	top:128px;
+	    	left:115px ;
+	    	float: left;
+	    }
+	    #oDiv2 img{
+	    	width: 248px;
+	    	height: 245px;
+	    	position: absolute;
+	    	left: 0;
+	    	top:0;
+	    }
+	    #pre{
+	    	position: absolute;
+	    	top: 102px;
+	    	left:288px;
+	    }
+	    #next{
+	    	position: absolute;
+	    	top:102px;
+	    	left:345px;
+	    }
+	    a{
+	    	width: 60px;
+	    	height: 60px;
+	    	background-color: #fff;
+	    	opacity: 0.3;
+	    	display: block;
+	    	color: #000;
+	    	font-size: 48px;
+	    	line-height: 60px;
+	    	position: absolute;
+	    	top: 33%;
+	    	text-align: center;
+	    }
+	    #before1,#before2{
+	    	left: 0px;
+	    }
+	    #after1,#after2{
+	    	right: 0px;
+	    }
+	    a:link,a:active,a:visited{
+	    	text-decoration: none;
+	    }
+	    a:hover{
+	    	opacity: 0.7;
+	    }
+	</style>
+<script type="text/javascript">
+function　$(selector,content){
+	var firstChar=selector.charAt(0);
+	var obj=content||document;
+	if(firstChar==="#"){
+		return document.getElementById(selector.slice(1));
+	}else{
+		return obj.getElementsByTagName(selector);
+	}
+}
+window.onload=function(){
+	var oPre=$("#pre");
+	var oNext=$("#next");
+	var aImg1=$("img",$("#oDiv1"))[0];
+	var aImg2=$("img",$("#oDiv2"))[0];
+	var oSpan1=$("span",$("#oDiv1"))[0];
+	var oSpan2=$("span",$("#oDiv2"))[0];
+	var oP1=$("p",$("#oDiv1"))[0];
+	var oP2=$("p",$("#oDiv2"))[0];
+	var arr1=["./img/1.jpg","./img/2.jpg","./img/3.jpg","./img/4.jpg"];
+	var arr2=["./img/01.jpg","./img/02.jpg","./img/03.jpg"];
+	var m=0,n=0;
+	oP1.innerHTML="第一组第"+1+"张图片";
+	oSpan1.innerHTML=1+"/"+arr1.length;	
+	oP2.innerHTML="第一组第"+1+"张图片";
+	oSpan2.innerHTML=1+"/"+arr2.length;			
+	aImg1.onclick=function(){
+		m++;
+		if(m>arr1.length-1){
+			m=0;
+		}
+		aI1();
+	}
+	aImg2.onclick=function(){
+		n++;
+		if(n>arr2.length-1){
+			n=0;
+		}
+		aI2();
+	}
+	function aI1(){
+		aImg1.src=arr1[m];
+		oP1.innerHTML="第一组第"+(m+1)+"张图片";
+		oSpan1.innerHTML=(m+1)+"/"+arr1.length;	
+	}	
+	function aI2(){
+		aImg2.src=arr2[n];
+		oP2.innerHTML="第一组第"+(n+1)+"张图片";
+		oSpan2.innerHTML=(n+1)+"/"+arr2.length;			
+	}
+	oPre.onclick=function(){
+		m--;
+		n--;
+		if(m<0){
+			m=arr1.length-1;
+		}
+		aI1();
+		if(n<0){
+			n=arr2.length-1;
+		}
+		aI2();
+	}
+	oNext.onclick=function(){
+		m++;
+		n++;
+		if(m>arr1.length-1){
+			m=0;
+		}
+		aI1();
+		if(n>arr2.length-1){
+			n=0;
+		}
+		aI2();	
+	}
+}
+</script>
+</head>
+<body>
+	<div class='bg'>
+		<button id="pre">上一组</button>
+		<button id="next">下一组</button>
+		<div id="oDiv1">
+		    <img src="./img/1.jpg" alt=""  />
+		    <span id='span1'></span>
+			<p id="p1"></p>
+			<div id="oDiv"></div>
+		</div>
+		<div id="oDiv2">
+			<img src="./img/01.jpg" />
+		    <span id='span2'></span>
+			<p id="p2"></p>
+		</div>
+	</div>
+</body>
+</html>

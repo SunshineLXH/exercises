@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title></title>
+	<style>
+	li{
+		list-style:none;
+		padding-top:10px;
+		padding-left:10px;
+		text-align:center;
+		width:20px;
+		float:left;
+	}
+	#headline{
+		background:#bcd2ee;
+		padding:10px 0px 10px 20px;
+		width:678px;
+	}
+	#grade{
+		width:698px;
+		height:50px;
+		padding-bottom:20px;
+	}
+	img{
+		width:20px;
+		height:20px;
+	}
+	#show{
+		float:right;
+		width:200px;
+		height:69px;
+		padding-top:20px;
+		color:#b0b0b0;
+	}
+	body,div{
+		margin:0;
+		padding:0;
+	}
+	div{
+		width:700px;
+		border:1px solid #8470ff;
+		font-size:14px;
+	}
+	</style>
+	<script>
+	//封装获取元素函数
+	function $(selector,content){
+		var firstChar=selector.charAt(0);
+		if(firstChar==="#"){
+			return document.getElementById(selector.slice(1));
+		}else{
+			content=content||document;
+			return content.getElementsByTagName(selector);
+		}
+	}
+	window.onload=function(){
+		//获取元素
+		var oLi=$("li",$("#grade"));
+		var aImg=$("img",$("#grade"));
+		var offon=true;//初始一个开关，判断是否点击了
+		var num;//初始一个记录点击下标的变量
+		for(var i=0;i<oLi.length;i++){//循环所有
+			oLi[i].index=i;
+			//点击则开关为false，记录值
+			oLi[i].onclick=function(){
+				offon=false;
+				num=this.index;
+			}
+			//鼠标移入时，先清除所有，根据左右加效果
+			oLi[i].onmouseover=function(){
+				for(var j=0;j<oLi.length;j++){
+					aImg[j].src="./1.png";
+				}
+				if(this.index>=Math.floor(oLi.length/2)){
+					for(var k=Math.floor(oLi.length/2);k<=this.index;k++){
+						aImg[k].src="./2.png";
+					}
+				}else{
+					for(var k=this.index;k<Math.floor(oLi.length/2);k++){
+						aImg[k].src="./2.png";
+					}
+				}
+			}
+			//鼠标移出时，判断左右把移入时加的效果改为初始;若有点击，则根据值判断左右，再添加效果
+			oLi[i].onmouseout=function(){
+				if(this.index>=Math.floor(oLi.length/2)){
+					for(var k=Math.floor(oLi.length/2);k<=this.index;k++){
+						aImg[k].src="./1.png";
+					}
+				}else{
+					for(var k=this.index;k<Math.floor(oLi.length/2);k++){
+						aImg[k].src="./1.png";
+					}
+				}
+				if(!offon){
+					if(num>=Math.floor(oLi.length/2)){
+						for(var m=Math.floor(oLi.length/2);m<=num;m++){
+							aImg[m].src="./2.png";
+						}
+					}else{
+						for(var m=num;m<Math.floor(oLi.length/2);m++){
+							aImg[m].src="./2.png";
+						}
+					}
+				}else{
+					for(var i=0;i<oLi.length;i++){
+						aImg[i].src="./1.png";
+					}	
+				}
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<div>
+		<div id="headline">
+			<span>对本篇资讯报道的质量打分</span>
+		</div>	
+		<div id="grade">
+			<li>
+				<img src="./1.png"/>
+				<span>-5</span>
+			</li>
+			<li>
+				<img src="./1.png"/>
+				<span>-4</span>
+			</li>
+			<li>
+				<img src="./1.png"/>
+				<span>-3</span>
+			</li>
+			<li>
+				<img src="./1.png"/>
+				<span>-2</span>
+			</li>
+			<li>
+				<img src="./1.png"/>
+				<span>-1</span>
+			</li>
+			<li>
+				<img src="./1.png"/>
+				<span>0</span>
+			</li>
+			<li>
+				<img src="./1.png"/>
+				<span>1</span>
+			</li>
+			<li>
+				<img src="./1.png"/>
+				<span>2</span>
+			</li>
+			<li>
+				<img src="./1.png"/>
+				<span>3</span>
+			</li>
+			<li>
+				<img src="./1.png"/>
+				<span>4</span>
+			</li>
+			<li>
+				<img src="./1.png"/>
+				<span>5</span>
+			</li>
+			<span id="show">当前平均分：打分后显示</span>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		margin:0;
+	}
+	img{
+		width:100px;
+		height:100px;
+	}
+	</style>
+</head>
+<body>
+	<button>加载图片</button>
+	<img src="#" alt="测试" data-original="./test.jpg" />
+	<script>
+	var oBtn=document.getElementsByTagName('button')[0];
+	var oImg=document.getElementsByTagName('img')[0];
+	oBtn.onclick=function(){
+		var oImg1=new Image();
+		oImg1.onload=function(){
+			oImg.src=oImg1.src;
+		}	
+		oImg1.src=oImg.dataset.original;
+	}
+	console.log(oImg.dataset);
+	</script>
+</body>
+</html>

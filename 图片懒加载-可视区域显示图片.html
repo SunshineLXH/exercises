@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		margin:0;
+	}
+	ul{
+		margin:0;
+		padding:0;
+		list-style:none;
+	}
+	img{
+		border:none;
+		vertical-align:middle;
+	}
+	.in{
+		border:1px solid black;
+		margin:10px;
+		text-align:center;
+		height:400px;
+		width:400px;
+		float:left;
+	}
+	.in img{
+		width:400px;
+		height:400px;
+	}
+	</style>
+</head>
+<body>
+	<ul class="list">
+		<li class="in"><img src="./test.gif" alt="测试" data-original="./test.jpg" ></li>
+		<li class="in"><img src="./test.gif" alt="测试" data-original="./test.jpg" ></li>
+		<li class="in"><img src="./test.gif" alt="测试" data-original="./test.jpg" ></li>
+		<li class="in"><img src="./test.gif" alt="测试" data-original="./test.jpg" ></li>
+		<li class="in"><img src="./test.gif" alt="测试" data-original="./test.jpg" ></li>
+		<li class="in"><img src="./test.gif" alt="测试" data-original="./test.jpg" ></li>
+	</ul>
+	<script>
+	var oImgs=document.images;
+	var len=oImgs.length;
+	loadImg(oImgs);
+	window.onscroll=function(){
+		loadImg(oImgs);
+	}
+	function loadImg(objs){
+		for(var i=0;i<len;i++){
+			if(objs[i].getBoundingClientRect().top<document.documentElement.clientHeight&&!objs[i].isLoad){
+				objs[i].isLoad=true;
+				objs[i].style.cssText="transition:'';opacity:0;";
+				if(objs[i].dataset){
+					aftLoadImg(objs[i],objs[i].dataset.original);
+				}else{
+					aftLoadImg(objs[i].getAttribute('data-original'));
+				}
+				function ab(i){
+					setTimeout(function(){
+						objs[i].style.cssText="transition:2s;opacity:1";
+					},16)
+				}
+				ab(i);
+			}
+		}
+	}
+	function aftLoadImg(obj,url){
+		var oImg=new Image();
+		oImg.onload=function(){
+			obj.src=oImg.src;
+		}
+		oImg.src=url;
+	}
+	</script>
+</body>
+</html>

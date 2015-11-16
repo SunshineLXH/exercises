@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+<div id="day-meal-expense" data-drink="tea" data-food="noodle" data-meal="lunch">$18.3</div>
+<script>
+	var expenseday=document.getElementById('day-meal-expense');
+	var typeOfDrink=expenseday.dataset.drink;
+	console.log(typeOfDrink);//tea
+	alert(expenseday.dataset.food);//noodle
+	console.log(expenseday.dataset.meal);//lunch
+	charInput=[];
+	for(var item in expenseday){
+		charInput.push(expenseday[item]);
+	}
+	console.log(charInput)
+	delete expenseday.dataset.meal;
+	console.log(expenseday.dataset.meal)//undefined
+	expenseday.dataset.dessert='icecream';
+	console.log(expenseday.dataset.dessert);
+</script>
+</body>
+</html>

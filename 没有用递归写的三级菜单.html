@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#oUl{
+				width:300px;
+				height:420px;
+				border:1px solid #ccc;
+			}
+			li{
+				list-style:none;
+			}
+		</style>
+		<script src="./tools.js"></script>
+		<script>
+		var json = [
+			{
+				title:"第一级菜单",
+				child:[
+					{
+						title:"第二级菜单",
+						child:[
+							{
+								title:"第三级菜单"
+							},
+							{
+								title:"第三级菜单"
+							}
+						]
+					},
+					{
+						title:"第二级菜单"
+					}
+				]
+			},{
+				title:"第一级菜单",
+				child:[
+					{
+						title:"第二级菜单",
+						child:[
+							{
+								title:"第三级菜单"
+							},
+							{
+								title:"第三级菜单"
+							}
+						]
+					},
+					{
+						title:"第二级菜单"
+					}
+				]
+			},
+			{
+				title:"第一级菜单"
+			}
+		];
+		window.onload = function(){
+			var oUl=$("#oUl");//获取元素
+			var str="",str1="",str2="",str3="";
+			for(var i=0;i<json.length;i++){//循环一级菜单
+				str1=json[i].title;
+				if(json[i].child){//如果一级菜单里有child
+					str+="<li><h3>"+i+str1+"</h3></li>";
+					for(var j=0;j<json[i].child.length;j++){//循环二级菜单
+						str2=json[i].child[j].title;
+						if(json[i].child[j].child){//如果二级菜单里child
+							str+="<li><ul><li><h4>"+i+j+str2+"</h4></li></ul></li>";
+							for(var k=0;k<json[i].child[j].child.length;k++){//循环三级菜单
+								str3=json[i].child[j].child[k].title;
+								str+="<li><ul><li><ul><li>"+i+j+k+str3+"</li></ul></li></ul></li>"
+								oUl.innerHTML=str;						
+							}
+						}else{//如果二级菜单里没有child
+							str+="<li><ul><li><h4>"+i+j+str2+"</h4></li></ul></li>";
+							oUl.innerHTML=str;
+						}
+					}
+				}else{//如果一级菜单里没有child
+					str+="<li><h3>"+i+str1+"</h3></li>";
+					oUl.innerHTML=str;
+				}
+			}
+		};
+		</script>
+	</head>
+
+	<body>
+		<ul id="oUl">
+		<!-- <li>
+				<h3>第一级菜单</h3>
+				<ul>
+					<li>
+						<h3>第二级</h3>
+						<ul>
+							<li><h3>三级</h3></li>
+						</ul>	
+					</li>
+					<li><h3>第二级</h3></li>
+				</ul>
+			</li>
+			<li>
+				<h3>第一级菜单</h3>
+				<ul>
+					<li><h3>第二级</h3></li>
+				</ul>
+			</li> -->
+		</ul>
+	</body>
+</html>

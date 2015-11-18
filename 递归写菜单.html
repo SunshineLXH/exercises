@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		
+	</style>
+	<script>
+		var json = [
+			{
+				title:"第一级菜单",
+				child:[
+					{
+						title:"第二级菜单",
+						child:[
+							{
+								title:"第三级菜单"
+							},
+							{
+								title:"第三级菜单",
+								child:[
+									{
+										title:"第四级菜单"
+									},
+									{
+										title:"第四级菜单",
+										child:[
+											{
+												title:"第五级菜单"
+											},
+											{
+												title:"第五级菜单"
+											}
+										]
+									}
+								]
+							}
+						]
+					},
+					{
+						title:"第二级菜单"
+					}
+				]
+			},{
+				title:"第一级菜单",
+				child:[
+					{
+						title:"第二级菜单",
+						child:[
+							{
+								title:"第三级菜单"
+							},
+							{
+								title:"第三级菜单"
+							}
+						]
+					},
+					{
+						title:"第二级菜单",
+						child:[
+							{
+								title:"第三级菜单"
+							},
+							{
+								title:"第三级菜单",
+								child:[
+									{
+										title:"第四级菜单"
+									},
+									{
+										title:"第四级菜单"
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				title:"第一级菜单"
+			}
+		];
+		window.onload=function(){
+			function fn(json){
+				var str="";
+				for(var i=0;i<json.length;i++){//循环json数组每一项
+					str+="<li><h3>"+json[i].title+"</h3>"
+					if(json[i].child){//如果json[i]里有clild的话
+						str+="<ul>";
+						str+=fn(json[i].child);//递归调用
+						str+="</ul>";
+					};
+					str+="</li>"
+				};
+				return str;//构成的str返回出去
+			};
+			console.log(fn(json));
+			oUl.innerHTML=fn(json);
+		}		
+	</script>
+</head>
+<body>
+	<ul id="oUl"></ul>
+</body>
+</html>

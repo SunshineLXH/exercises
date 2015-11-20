@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	var numbers=[1,2,3,4,5,4,3,2,1];
+
+	//关于every(),每一项为true,才返回true
+	var everyResult=numbers.every(function(item,index,array){//function传入三个参数,数组项的值item,该项在数组中的位置index,数组对象本身array
+		return (item>2);
+	});
+	console.log(everyResult);//false
+
+	//关于some(),有一项为true,就返回true
+	var someResult=numbers.some(function(item,index,array){
+		return (item>2);
+	});
+	console.log(someResult);//true
+
+	//关于filter(),返回function函数里每项为true组成的数组
+	var filterResult=numbers.filter(function(item,index,array){
+		return (item>2);
+	});
+	console.log(filterResult);//[3,4,5,4,3]
+
+	//关于map(),返回的是function调用后结果组成的数组
+	var mapResult1=numbers.map(function(item,index,array){
+		return item*2;
+	});
+	console.log(mapResult1);//[2,4,6,8,10,8,6,4,2]
+	var mapResult2=numbers.map(function(item,index,array){
+		return 1;
+	});
+	console.log(mapResult2);//[1,1,1,1,1,1,1,1,1]
+
+	//关于forEach(),它只是对数组中每一项运行传入的函数,这个方法没有返回值,本质上与使用for循环迭代数组一样
+	numbers.forEach(function(item,index,array){
+		//执行某些操作,例如
+		console.log(item);//输出时是循环每一项输出值换行输出下一项值
+	});
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

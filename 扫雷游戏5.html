@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	#box{
+		position:relative;
+	}
+	#box div{
+		width:50px;
+		height:50px;
+		background:red;
+		line-height:50px;
+		text-align:center;
+		position:absolute;
+		top:0;
+		left:0;
+	}
+	</style>
+	<script>
+	window.onload=function(){
+		var oBox=document.getElementById("box");
+		var arr=[];
+		for(var i=0;i<100;i++){
+			var l=(i%10)*51;
+			var t=(Math.floor(i/10))*51;
+			oBox.innerHTML+='<div style="left:'+l+'px;top:'+t+'px"></div>';
+			arr.push(i);
+		}
+		arr.sort(function(){
+			return Math.random()-0.5;
+		})
+		var oDiv=oBox.getElementsByTagName("div");
+		for(var j=0;j<oDiv.length;j++){
+			fn(j);
+		}
+		function fn(n){
+			oDiv[n].style.background="red";
+			var arr1=arr.slice(0,10);
+			var arr2=arr.slice(10);
+			for(var o=0;o<arr1.length;o++){
+				abc(o)
+				
+			}
+		}
+		function abc(f){
+			var arr1=arr.slice(0,10);
+			var arr2=arr.slice(10);
+			oDiv[arr1[f]].onclick=function(){
+				oDiv[arr1[f]].style.background="blue";
+				oDiv[arr1[f]].onclick=function(){
+					alert("雷!");
+					for(var g=0;g<oDiv.length;g++){
+						fn(g);
+					}
+				}
+			}
+		}
+	}
+
+	// window.onload=function(){
+	// 	var oBox=document.getElementById("box");
+	// 	var arr=[];
+	// 	for(var i=0;i<100;i++){
+	// 		var l=(i%10)*51;
+	// 		var t=(Math.floor(i/10))*51;
+	// 		oBox.innerHTML+='<div style="left:'+l+'px;top:'+t+'px"></div>';
+	// 		arr.push(i);
+	// 	}
+	// 	// console.log(arr)
+	// 	arr.sort(function(){
+	// 		return Math.random()-0.5;
+	// 	})
+	// 	var oDiv=oBox.getElementsByTagName("div");
+	// 	for(var j=0;j<oDiv.length;j++){
+	// 		oDiv[j].style.background="red";
+	// 		for(var k=0;k<arr.slice(10).length;k++){
+	// 			oDiv[arr.slice(10)[k]].onclick=function(){
+	// 				this.style.background="green";
+	// 			}
+	// 		}
+	// 		for(var m=0;m<arr.slice(0,10).length;m++){
+	// 			oDiv[arr.slice(0,10)[m]].style.background="blue";
+	// 			oDiv[arr.slice(0,10)[m]].onclick=function(){
+	// 				alert("雷!");
+	// 				for(var n=0;n<oDiv.length;n++){
+	// 					oDiv[n].style.background="red";
+	// 					for(var o=0;o<arr.slice(10).length;k++){
+	// 						oDiv[arr.slice(10)[o]].onclick=function(){
+	// 							this.style.bakcground="green";
+	// 						}
+	// 					}
+	// 					for(var p=0;p<arr.slice(0,10).length;p++){
+	// 						oDiv[arr.slice(0,10)[p]].style.background="blue";
+	// 						oDiv[arr.slice(0,10)[p]].onclick=function(){
+	// 							alert("雷!");
+	// 						}
+	// 					}
+	// 				}
+	// 			}
+	// 		}
+			
+	// 	}
+	// }
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

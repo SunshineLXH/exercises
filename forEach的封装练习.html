@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<title>forEach的封装练习</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="./css/cube.css" rel="stylesheet">
+<script src="./js/global.js"></script>
+<script>
+	var arr1 = [ 'a', 'b', 'c' ],
+			arr2 = [ 1, 2, 3, 4, 5 ],
+			arr3 = [ '妙', '味', '课', '堂' ];
+
+	// console.log( str.indexOf('a') );
+	// var str = 'abcdefg';
+
+	/*
+		1，通常我们需要获取到某个数组中某个值的下标，都要循环出来
+		2，其中就涉及到了2个参数：数组中的某个值和对应的下标
+	*/
+
+	// 比如这样，先来获取到某个值的下标
+	// 以下就得到了 a -> 0  b -> 1  c -> 2
+	// for ( var i = 0; i < arr1.length; i++ ) {
+	// 	console.log( arr1[i], i );
+	// };
+
+	// 如果有很多个数组，那么我们需要一个一个进行 for 循环才能得到
+	// 下面就来封装一个遍历的方法
+	// 首先要传入2个参数，一个是 数组的变量名，一个是需要返回出来的函数（回调函数）
+	// 这里的 callBack 因为是函数，所以还可以进行参数的传递，把数组中数值和对应的下标传递出去
+	function forEach( arr, callBack ) {
+		for ( var i = 0; i < arr.length; i++ ) {
+			callBack( arr[i], i );
+		};
+	};
+
+	// 使用这个封装好的函数来获取下标
+	// 这里的 function 等同于 function callBack( arr[i], i ){}
+	forEach( arr3, function ( item, index ) {
+		console.log( item, index );
+		if ( item == '堂' ) {
+			console.log( index );
+		};
+	});
+</script>
+</head>
+<body>
+  
+</body>
+</html>

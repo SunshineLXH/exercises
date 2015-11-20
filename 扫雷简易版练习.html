@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<title>扫雷简易版作业</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="./css/cube.css" rel="stylesheet">
+<script src="./js/global.js"></script>
+<style>
+	/*#div { display: none;}*/
+	#div div, li { position: absolute; left: 0; top: 0; width: 50px; height: 50px; background-color: #ccc; border: 2px #eee solid;}
+	li { border: none; background-color: #eee; text-align: center; line-height: 50px;}
+	li.red { background-color: red; color: #fff;}
+</style>
+<script>
+	window.onload = function () {
+		var oUl = $('#ul');
+		var oDiv = $('#div');
+		var aLi = $('li',oUl);
+		var aDiv = $('div',oDiv);
+		var strDiv = '';
+		var strLi = '';
+		var arr = [];
+		for ( var i = 0; i < 100; i++ ) {
+			arr.push( Math.floor( Math.random() * 3 ) );
+			strLi += '<li style="left:' + (i%10*50) + 'px;top:' + Math.floor(i/10)*50 + 'px;"></li>';
+			strDiv += '<div style="left:' + (i%10*50) + 'px;top:' + Math.floor(i/10)*50 + 'px;"></div>';
+		};
+		oUl.innerHTML = strLi;
+		oDiv.innerHTML = strDiv;
+		// console.log(arr);
+
+		for ( var j = 0; j < aDiv.length; j++ ) {
+			aDiv[j].index = j;
+			aLi[j].innerHTML = arr[j];
+			if ( arr[j] == 0 ) {
+				aLi[j].innerHTML = '雷';
+			};
+			console.log(arr);
+			aDiv[j].onclick = function () {
+				this.className = 'hide';
+				if ( arr[this.index] == 0 ) {
+					oDiv.className = 'hide';
+					for ( var i = 0; i < arr.length; i++ ) {
+						if ( arr[i] == 0 ) {
+							aLi[i].className = 'red';
+						};
+					};
+					alert( '怎么能这么不小心就踩到雷了呢，排雷的工作还有待加强啊！！！' );
+				};
+			};
+		};
+
+	};
+</script>
+<script>
+	
+</script>
+</head>
+<body>
+  <ul id="ul"></ul>
+  <div id="div"></div>
+</body>
+</html>

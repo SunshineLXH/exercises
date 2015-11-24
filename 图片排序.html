@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	#box{
+		width:850px;
+		padding:20px;
+		background:#ccc;
+	}
+	#btn{
+		text-align:center;
+	}
+	#btn input{
+		width:100px;
+		height:40px;
+	}
+	#oUl{
+		overflow:hidden;
+		padding-top:20px;
+	}
+	#oUl li{
+		width:200px;
+		height:200px;
+		float:left;
+		background:#999;
+		margin:0px 5px;
+		text-align:center;
+		list-style:none;
+	}
+	#oUl li div{
+		height:150px;
+		background:green;
+		font-size:50px;
+		line-height:150px;
+		color:#fff;
+	}
+	#oUl li p{
+		font-size:20px;
+		line-height:50px;
+	}
+	</style>
+	<script src="./tools.js"></script>
+	<script>
+	window.onload=function(){
+		//获取元素
+		var aOrder=$("input",$("#box"));
+		var arr=["aaaa","bbb","yyy","hfhfh","7777","yhrthtrd","rsrgdgd","dfgdfgf"];
+		var aLi=$("li",$("#oUl"));
+		var aP=$("p",$("#oUl"));
+		var aDiv=$("div",$("#oUl"));
+		// console.log(aP.length)
+		for(var i=0;i<aLi.length;i++){//生成页面
+			// console.log(i)
+			aP[i].innerHTML='<span>'+(i+1)+'-'+arr[i]+'</span>';		
+		}
+		var offOn=true;//设一个开关
+		var n=0;
+		aOrder[0].onclick=function(){//大小排序
+			n++;
+			arr.reverse();//反转
+			if(!offOn){//小到大
+				for(var i=0;i<aLi.length;i++){
+					aP[i].innerHTML='<span>'+(i+1)+'-'+arr[i]+'</span>';
+					aDiv[i].innerHTML=arr[i];
+					offOn=true;					
+				}
+			}else{//大到小
+				for(var i=0;i<aLi.length;i++){
+					aP[i].innerHTML='<span>'+(arr.length-i)+'-'+arr[i]+'</span>';
+					aDiv[i].innerHTML=arr[i];
+					offOn=false;					
+				}
+			}	
+		}
+		aOrder[1].onclick=function(){
+			arr.sort(function(){//打乱
+				return Math.random()-0.5;
+			});
+			if(n%2==0){//初始为0,小到大,保留小到大顺序
+				for(var i=0;i<aLi.length;i++){
+					aP[i].innerHTML='<span>'+(i+1)+'-'+arr[i]+'</span>'	;
+					aDiv[i].innerHTML=arr[i];
+				}
+			}else if(n%2==1){//大到小,保留大到小顺序
+				for(var i=0;i<aLi.length;i++){
+					aP[i].innerHTML='<span>'+(aLi.length-i)+'-'+arr[i]+'</span>'	;
+					aDiv[i].innerHTML=arr[i];
+				}				
+			}
+
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div id="btn">
+			<input type="button" value="从大到小"/>
+			<input type="button" value="打乱顺序"/>
+		</div>
+		<ul id="oUl">
+			<li>
+				<div>aaaa</div>
+				<p><span>1-</span></p>
+			</li>
+			<li>
+				<div>bbb</div>
+				<p><span>2-</span></p>
+			</li>
+			<li>
+				<div>yyy</div>
+				<p><span>3-</span></p>
+			</li>
+			<li>
+				<div>hfhfh</div>
+				<p><span>4-</span></p>
+			</li>
+			<li>
+				<div>7777</div>
+				<p><span>5-</span></p>
+			</li>
+			<li>
+				<div>yhrthtrd</div>
+				<p><span>6-</span></p>
+			</li>
+			<li>
+				<div>rsrgdgd</div>
+				<p><span>7-</span></p>
+			</li>
+			<li>
+				<div>dfgdfgf</div>
+				<p><span>8-</span></p>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

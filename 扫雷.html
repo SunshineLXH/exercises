@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	div{
+		width:50px;
+		height:50px;
+		background-color:red;
+		position:absolute;
+		left:0;
+		top:0;
+		border:1px solid #000;
+	}
+	</style>
+	<script>
+	window.onload=function(){
+		var str="";
+		var l,t;
+		for(var i=0;i<100;i++){
+			l=i%10*50;
+			t=Math.floor(i/10)*50;
+			str+='<div style="left:'+l+'px;top:'+t+'px;"></div>';
+		}
+		document.body.innerHTML=str;
+		var aDiv=document.getElementsByTagName("div");
+		var arr=[];
+		fn();
+		function fn(){
+			arr=[];
+			for(var i=0;i<100;i++){
+				arr.push(i);
+			}
+			arr.sort(function(){
+				return Math.random()-0.5;
+			})
+			arr.length=10;
+			for(var i=0;i<aDiv.length;i++){
+				aDiv[i].style.background="red";
+			}
+			// for(var i=0;i<arr.length;i++){
+			// 	aDiv[arr[i]].style.background="black";
+			// }
+		}
+		for(var i=0;i<aDiv.length;i++){
+			aDiv[i].index=i;
+			aDiv[i].onclick=function(){
+				for(var i=0;i<arr.length;i++){
+					if(this.index===arr[i]){
+						this.style.background="black";
+						alert("Game over!");
+						fn();
+						return;				
+					}
+				}
+				this.style.background="green";
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

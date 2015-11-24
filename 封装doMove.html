@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	div{
+		left:0;
+		width:50px;
+		height:50px;
+		background:red;
+		margin:10px;
+		position:relative;
+	}
+	</style>
+	<script>
+	function getStyle( obj,attr ){
+		if( obj.currentStyle ){
+			return obj.currentStyle[attr]
+		}else{
+			return getComputedStyle(obj)[attr];
+		};
+	};
+	
+	window.onload=function(){
+		var oDiv=document.getElementsByTagName("div");
+
+	
+		oDiv[0].onclick=function(){
+			setTimeout(function(){
+				oDiv[0].style.left="100px";				
+			},500)
+
+		}
+		
+		oDiv[1].onclick=function(){
+			var n=0;
+			var timer1=setInterval(function(){
+				n=n+20;
+				if(n>=200){
+					clearInterval(timer1);
+					timer1=null;
+				}else{
+					oDiv[1].style.left=n+"px";					
+				}
+
+			},300);
+		}
+
+		oDiv[2].onclick=function(){
+			var n=0;
+			if(timer2) return;
+			var timer2=setInterval(function(){
+				n=n+30;
+				if(n>=400){
+					clearInterval(timer2);
+					timer2=null;
+				}else{
+					oDiv[2].style.left=n+"px";
+				}
+			},400);
+		}
+
+		oDiv[3].onclick=function(){
+			var n=0;
+			if(oDiv[3].timer3) return;
+			oDiv[3].timer3=setInterval(function(){
+				n=n+30;
+				if(n>=400){
+					clearInterval(oDiv[3].timer3);
+					oDiv[3].timer3=null;
+				}else{
+					oDiv[3].style.left=n+"px";
+				}
+			},300)
+		}
+
+		function doMove(obj,attr,speed,target,callBack){
+			if(obj.timer) return;
+			var num=parseFloat(getStyle(obj,attr));
+			speed=num>target?-Math.abs(speed):Math.abs(speed);
+			obj.timer=setInterval(function(){
+				num+=speed;
+				if(speed>0&&num>=target||speed<0&&num<=target){
+					num=target;
+					clearInterval(obj.timer);
+					obj.timer=null;
+					obj.style[attr]=num+"px";
+					(typeof callBack==="function")&&callBack();
+				}else{
+					obj.style[attr]=num+"px";
+				}
+			},100)
+		};
+		oDiv[4].onclick=function(){
+			doMove(oDiv[5],"left",10,400,function(){
+				alert(1);
+			})
+		}
+	}
+	
+	</script>
+</head>
+<body>
+	<div>0</div>
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+	<div>4</div>
+	<div>5</div>
+</body>
+</html>

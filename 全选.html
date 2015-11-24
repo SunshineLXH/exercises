@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body,div{
+		margin:0;
+		padding:0;
+	}
+	#box{
+		width:400px;
+		height:300px;
+	}
+	#up li{
+		list-style:none;
+	}
+	.gray{
+		background:#EFEFEF;
+	}
+	.green{
+		background:#F7FFFF;
+	}
+	span{
+		width:180px;
+		display:inline-block;
+	}
+	#down input{
+		margin-left:43px;
+	}
+	</style>
+	<script src="./tools.js"></script>
+	<script>
+	window.onload=function(){
+		//获取元素
+		var aLi=$("li",$("#oUl"));
+		var allChecked=$("input",$("#down"))[0];
+		var aInput=$("input",$("#oUl"));
+		
+		for(var i=0;i<aLi.length;i++){
+			initial();
+			fn(i);
+		}
+		//初始为隔行变色
+		function initial(){
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].className="";
+				if(i%2==0){
+					aLi[i].className="green";
+				}				
+			}
+		}
+
+		function fn(n){
+			aLi[n].onmouseover=function(){//鼠标移过
+				this.className="gray";
+			}
+			aLi[n].onclick=function(){//鼠标点击时判断true的数量
+				if(aInput[n].checked){
+					aLi[n].className="gray";
+					var m=0;
+					for(var j=0;j<aInput.length;j++){
+						if(aInput[j].checked){
+							m++;
+							aLi[j].className="gray";
+						}
+					}
+					if(m==aInput.length){
+						allChecked.checked=true;
+					}else{
+						allChecked.checked=false;
+					}
+				}else{
+					if(n%2==0){
+						aLi[n].className="green";
+					}else{
+						aLi[n].classname="";
+					}
+					allChecked.checked=false;
+				}
+			}
+			aLi[n].onmouseout=function(){//鼠标离开
+				initial();
+				for(var j=0;j<aInput.length;j++){
+					if(aInput[j].checked){
+						aLi[j].className="gray";
+					}
+				}
+			}
+		}
+		allChecked.onclick=function(){//全选按钮
+			if(allChecked.checked){
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].className="gray";
+					aInput[i].checked=true;
+				}
+			}else if(!allChecked.checked){
+				initial();
+				for(var i=0;i<aLi.length;i++){
+					aInput[i].checked=false;
+				}
+			}
+		}
+
+	}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div id="up">
+			<ul id="oUl">
+				<li>
+					<input type="checkbox" />
+					<span>私奔</span>
+					<strong>梁博</strong>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<span>北京北京</span>
+					<strong>梁博,黄勇</strong>
+				</li>				
+				<li>
+					<input type="checkbox" />
+					<span>我爱你中国</span>
+					<strong>梁博</strong>
+				</li>
+			</ul>
+		</div>
+		<div id="down">
+			<input type="checkbox" value="全选"/>全选
+		</div>
+	</div>
+</body>
+</html>

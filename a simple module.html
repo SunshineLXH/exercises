@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一个取代浏览器自带alert,confirm的JS组件Demo</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<a href="javascript:alert('自定义控件')">自定义Alert控件</a>
+<a href="javascript:confirm('关闭自定义Confirm组件吗？',function(flag){
+if(flag){alert('True');}else{alert('False');}})">自定义Confirm控件</a>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+    (function(window, jQuery, undefined){
+        var HtmlS = {
+            vol: '<div class="CwMask cw-mask" id="CwMask"></div><div class="CwBox cw-box" id="CwBox"><div class="CwMain cw-main" id="CwMain"></div><div class="CwBtns cw-btns"></div></div>',
+            alert:
+        }
+    })(window, jQuery);
+</script>
+</body>
+</html>

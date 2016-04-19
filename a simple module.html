@@ -16,8 +16,57 @@ if(flag){alert('True');}else{alert('False');}})">自定义Confirm控件</a>
     (function(window, jQuery, undefined){
         var HtmlS = {
             vol: '<div class="CwMask cw-mask" id="CwMask"></div><div class="CwBox cw-box" id="CwBox"><div class="CwMain cw-main" id="CwMain"></div><div class="CwBtns cw-btns"></div></div>',
-            alert:
+            alert: '<input type="button" class="CAltBtn pop-btn confirm-false" value="确定">',
+            confirm: '<input type="button" class="CCfmFalse pop-btn confirm-true" value="取消"><input type="button" class="CCfmTrue pop-btn confirm-false" value="确定">'
+        };
+
+        function Cw() {
+            var config = {};
+            this.get = function(n) {
+                return config[n];
+            };
+
+            this.set = function(n, v) {
+                config[n] = v;
+            };
+            this.init();
         }
+
+        Cw.prototype = {
+            init: function() {
+                this.createDom();
+                this.bindEvent();
+            },
+            createDom: function() {
+
+            },
+            bindEvent: function() {
+
+            },
+            alert: function() {
+
+            },
+            confirm: function() {
+
+            },
+            show: function() {
+
+            },
+            hide: function() {
+
+            },
+            destroy: function() {
+
+            }
+        };
+
+        var obj = new Cw();
+        window.alert = function(str) {
+            obj.alert.call(obj, str);
+        };
+        window.confirm = function(str, cb) {
+            obj.confirm.call(obj, str, cb);
+        };
     })(window, jQuery);
 </script>
 </body>

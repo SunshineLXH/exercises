@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=" width = device-width ,
+  height = device-height ,
+        initial-scale = 1,
+        minimum-scale = 1,
+        maximum-scale = 1,
+        user-scalable =no">
+    <title>Title</title>
+    <style>
+        html, body, div {
+            margin: 0;
+            padding: 0;
+        }
+        .dragBox {
+            width: 50px;
+            height: 50px;
+            background: #f00;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div class="dragBox"></div>
+
+<script>
+    var dragBox = document.getElementsByClassName('dragBox')[0];
+    dragBox.addEventListener('touchmove',function(event){
+        event.preventDefault();
+        if (event.targetTouches.length == 1) {
+            var touch = event.targetTouches[0];
+            dragBox.style.left = touch.pageX + 'px';
+            dragBox.style.top = touch.pageY + 'px';
+        }
+    }, false);
+</script>
+</body>
+</html>

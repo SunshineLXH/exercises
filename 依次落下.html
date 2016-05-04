@@ -29,36 +29,38 @@
 	</style>
 	<script src='./tools.js'></script>
 	<script>
-		window.onload=function(){
-			var oDiv1=$("#box");
-			var l=0;
-			var str='';
-			for(var i=0;i<20;i++){//自动生成20个div
-				l=i*55;
-				str+='<div style="left:'+l+'px"></div>'
+		window.onload = function() {
+			var oDiv1 = $("#box");
+			var l = 0;
+			var str = '';
+			for(var i = 0;i < 20;i++){//自动生成20个div
+				l = i*55;
+				str += '<div style="left:'+l+'px"></div>'
 			}
-			oDiv1.innerHTML=str;
-			oDiv=$("div",oDiv1);
-			var offOn=true;
-			document.onclick=function(){//点击
-				var n=0;
-				if(offOn){//开关开时
-					var timer=setInterval(function(){
-						if(n<20){
-							doMove(oDiv[n],"top",50,400)
+			oDiv1.innerHTML = str;
+			oDiv = $("div",oDiv1);
+			var offOn = true;
+			document.onclick = function(){//点击
+				var n = 0;
+				if (offOn) {//开关开时
+					var timer = setInterval(function(){
+						if(n < 20){
+							doMove(oDiv[n], "top", 50, 400)
 							n++;
 							console.log(n)	
-						}else if(n=20){
-							offOn=false;//把开关关掉
+						}else if(n = 20){
+							offOn = false;//把开关关掉
 						}
 					},50)
-				}else{//开关关时
-					setInterval(function(){
-						if(n<20){
+				}
+				else {//开关关时
+					setInterval(function() {
+						if (n < 20) {
 							doMove(oDiv[n],"top",50,0)
 							n++;
-						}else if(n=20){
-							offOn=true;//把开关开着
+						}
+						else if (n = 20) {
+							offOn = true;//把开关开着
 						}
 					},50)	
 				}

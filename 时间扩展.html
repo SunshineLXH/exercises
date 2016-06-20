@@ -43,47 +43,48 @@
 	</style>
 	<script src="./tools.js"></script>
 	<script>
-	window.onload=function(){
-		var oUl=$("#list");//获取元素
-		var oLi=$("li",oUl);
-		var prevTime="";//初始化变量prevTime
+	window.onload = function(){
+		var oUl = $("#list");//获取元素
+		var oLi = $("li",oUl);
+		var prevTime = "";//初始化变量prevTime
 		//一秒一渲染
 		setInterval(function(){
 			gettime();
 		},1000);                                                                                                      
 		//封装gettime函数
 		function gettime(){
-			var d=new Date();
-			var H=d.getHours();
-			var M=d.getMinutes();
-			var S=d.getSeconds();
-			var hms=addZero(H)+":"+addZero(M)+":"+addZero(S);//时分秒变量
+			var d = new Date();
+			var H = d.getHours();
+			var M = d.getMinutes();
+			var S = d.getSeconds();
+			var hms = addZero(H) + ":" + addZero(M) + ":" + addZero(S);//时分秒变量
 			//循环
-			for(var j=0;j<hms.length;j++){
-				if(hms.charAt(j)===":"){//如果是“：”时让它闪烁
+			for (var j=0; j < hms.length; j++){
+				if (hms.charAt(j) === ":"){//如果是“：”时让它闪烁
 					(function gi(n){
-						var oP=$("p",oLi[n])[0];
-						var aImg=$("img",oP);
-						aImg[0].src="./img1/fuh.png";//分号
+						var oP = $("p",oLi[n])[0];
+						var aImg = $("img",oP);
+						aImg[0].src = "./img1/fuh.png";//分号
 						setTimeout(function(){//设一个定时器，500ms改变图片
-							aImg[0].src="./img1/nfh.png";
+							aImg[0].src = "./img1/nfh.png";
 						},500);
 					})(j);
-				}else{
+				}
+				else {
 					(function gi(n){
-						var oP=$("p",oLi[n])[0];
-						var aImg=$("img",oP);
-						aImg[1].src="./img1/"+hms.charAt(n)+".png";//第二张图片
-						if(hms.charAt(n)!==prevTime.charAt(n)){//上一次不等于当前值，让它图片移动
+						var oP = $("p",oLi[n])[0];
+						var aImg = $("img",oP);
+						aImg[1].src = "./img1/" + hms.charAt(n) + ".png";//第二张图片
+						if (hms.charAt(n) !== prevTime.charAt(n)){//上一次不等于当前值，让它图片移动
 							doMove(oP,"top",10,-150,function(){
-								oP.style.top=0;//回调函数，瞬间top为0
-								aImg[0].src="./img1/"+hms.charAt(n)+".png";//第一张图片
+								oP.style.top = 0;//回调函数，瞬间top为0
+								aImg[0].src = "./img1/" + hms.charAt(n) + ".png";//第一张图片
 							},1000)
 						}
 					})(j);
 				}
 			}
-			prevTime=hms;//记录上一次值
+			prevTime = hms;//记录上一次值
 		}
 	}
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>lightBox</title>
+        <link rel="stylesheet" type="text/css" href="http://www.imooc.com/data/jquery.notesforlightbox.css" />
+        <script type="text/javascript" src="http://www.imooc.com/data/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="http://www.imooc.com/data/jquery.notesforlightbox.js"></script>
+
+        <style>
+        	.divPics ul{
+        		list-style: none;
+        	}
+        	.divPics ul li {
+        		display: inline;
+        	}
+        	.divPics ul img {
+        		width: 275px;
+        		height: 175px;
+        	}
+        </style>
+    </head>
+    <body>
+    	<div>
+    		<div class="title">
+    			<span>图片灯箱lightBox插件</span>
+    		</div>
+    		<div class="content">
+    			<div class="divPics">
+    				<ul>
+    					<li><a href="http://img.mukewang.com/52e489f20001ecfc04480275.jpg" title="第1张风景图片"><img src="http://img.mukewang.com/52e489f20001ecfc04480275.jpg" alt=""></a></li>
+    					<li><a href="http://img.mukewang.com/52e48a1e0001eec804480275.jpg" title="第2张风景图片"><img src="http://img.mukewang.com/52e48a1e0001eec804480275.jpg" alt=""></a></li>
+    					<li><a href="http://img.mukewang.com/52e48a4c00015ad204480275.jpg" title="第3张风景图片"><img src="http://img.mukewang.com/52e48a4c00015ad204480275.jpg" alt=""></a></li>
+    				</ul>
+    			</div>
+    		</div>
+    	</div>
+
+    	<script type="text/javascript">
+    		$(function(){
+	    		$(".divPics a").lightBox({
+	    			overlayBgColor: "#ccc", //background color
+	    			overlayOpacity: .5, //background opacity
+	    			containerResizeSpeed: 600 //switching speed
+	    		});    			
+    		});
+    	</script>
+    </body>
+</html>

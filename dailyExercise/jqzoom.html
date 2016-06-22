@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>jqzoom</title>
+        <link href="http://www.imooc.com/data/jquery.jqzoom.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="http://www.imooc.com/data/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="http://www.imooc.com/data/jquery.jqzoom.js"></script>
+    </head>
+    <body>
+    	<div>
+    		<div class="title">
+    			<span>图片放大镜</span>
+    		</div>
+    		<div class="content">
+    			<a href="http://img.mukewang.com/52e4aec90001924d06800599.jpg" id="pic" title="小兔子乖乖"><img src="http://img.mukewang.com/52e4aee700012df702130212.jpg" alt="" /></a>
+    		</div>
+    	</div>
+    	<script>
+	    	$(function(){
+				$("#pic").jqzoom({
+					zoomWidth: 123,
+					zoomHeight: 123,
+					zoomType: 'reverse'
+				});
+	    	});    		
+    	</script>
+    </body>
+</html>

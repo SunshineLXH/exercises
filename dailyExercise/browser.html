@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>$.browser</title>
+        <script type="text/javascript" src="http://www.imooc.com/data/jquery-1.8.2.min.js"></script>
+    </head>
+    <body>
+    	<div class="title">获取浏览器名称和版本信息</div><br/>
+    	<div class="content"></div>
+
+    	<script type="text/javascript">
+    		$(function(){
+    			var strTmp = "您的浏览器是：";
+    			if ($.browser.chrome) strTmp += "chrome";
+    			if ($.browser.mozilla) strTmp += "火狐";
+    			strTmp += "<br /><br />" + "版本号是：" + $.browser.version;
+    			$(".content").html(strTmp);
+    		});
+    	</script>.
+    </body>
+</html>

@@ -9,13 +9,15 @@
     <body>
     	<div id="example"></div>
     	<script type="text/babel">
-    		var arr = [
-	    		<h1>Hello React</h1>,
-	    		<h2>React is awesome</h2>,
-    		];
+    		var HelloMessage = React.createClass({
+    			render: function() {
+	    			return <h1>hello {this.props.name}</h1>;
+    			}
+    		});
+
     		ReactDOM.render(
-	    		<div>{arr}</div>,
-	    		document.getElementById("example")
+				<HelloMessage name="John" />,
+				document.getElementById('example')
     		);
     	</script>
     </body>

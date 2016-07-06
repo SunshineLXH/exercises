@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<style>
+#head, .content, .footer {
+    width: 100%;
+    margin: 10px 0;
+    border: 2px solid green;
+}
+.logo, .user {
+	margin: 10px;
+}
+.logo {
+	float: left;
+	width: 50px;
+	height: 50px;
+	border: 2px solid #ccc;
+}
+.user {
+	float: right;
+}
+.clear {
+	clear: both;
+	width: 0;
+	height: 0;
+	font-size: 0;
+}
+.left, .right {
+	border: 2px solid red;
+	margin: 10px;
+}
+.left {
+	float: left;
+	width: calc(100% - 200px - 30px - 8px - 10px);
+}
+.right {
+	float: right;
+	width: 200px;
+}
+
+.footer {
+	position: relative;
+}
+.inner {
+	padding: 10px;
+	text-align: center;
+}
+</style>
+</head>
+
+<body>
+	<div id="head">
+		<div class="logo">logo</div>
+		<input class="user" type="text" value="用户名" />
+		<div class="clear"></div>
+	</div>
+
+	<div class="content">
+		<div class="left">left</div>
+		<div class="right">right</div>
+		<div class="clear"></div>
+	</div>
+
+	<div class="footer"><div class="inner">footer</div></div>
+</body>
+</html>

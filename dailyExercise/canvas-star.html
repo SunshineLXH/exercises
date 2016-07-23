@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>用canvas制作星星</title>
+        <style>
+        	* {
+        		margin: 0;
+        		padding: 0;
+        	}
+        </style>
+    </head>
+    <body>
+      <canvas width="150" height="50" id="myCanvas"></canvas>
+    <script>  
+	    var myCanvas = document.getElementById("myCanvas");  
+	    var context = myCanvas.getContext('2d');  
+	    context.fillStyle = 'rgb(255,0,0)';  
+	    context.lineWidth = 1;  
+	    context.strokeRect(0, 0, 150, 50)
+	    //绘图的起始点，也就是五角星的顶点坐标  
+	    var x=20,y=20;  
+	    for(var i=0;i<2;i++)  
+	    {  
+		    context.beginPath();  
+		    //五角星边的长度为10px，x1、h2为五角星的底部点坐标偏差值，x2、h2为五角星上部点偏差值  
+		    var x1 = 20*Math.sin(Math.PI/10);  
+		    var h1 = 20*Math.cos(Math.PI/10);  
+		    var x2 = 10;  
+		    var h2 = 10*Math.tan(Math.PI/5);  
+		    context.lineTo(x+x1,y+h1);  
+		    context.lineTo(x-10,y+h2);  
+		    context.lineTo(x+10,y+h2);  
+		    context.lineTo(x-x1,y+h1);  
+		    context.lineTo(x-x1,y+h1);  
+		    context.lineTo(x,y);  
+		    context.closePath();  
+		    context.fill();  
+		    x=(i+2)*20;  
+		    y=20;  
+		    context.moveTo(x,y);  
+	    } 
+	    context.fillStyle = 'rgb(0,255,0)';  
+	    context.lineWidth = 1; 
+
+	    context.moveTo(80, 20);
+	    for(var i=2;i<6;i++)  
+	    {  
+		    context.beginPath();  
+		    //五角星边的长度为100px，x1、h2为五角星的底部点坐标偏差值，x2、h2为五角星上部点偏差值  
+		    var x1 = 20*Math.sin(Math.PI/10);  
+		    var h1 = 20*Math.cos(Math.PI/10);  
+		    var x2 = 10;  
+		    var h2 = 10*Math.tan(Math.PI/5);  
+		    context.lineTo(x+x1,y+h1);  
+		    context.lineTo(x-10,y+h2);  
+		    context.lineTo(x+10,y+h2);  
+		    context.lineTo(x-x1,y+h1);  
+		    context.lineTo(x-x1,y+h1);  
+		    context.lineTo(x,y);  
+		    context.closePath();  
+		    context.fill();  
+		    x=(i+2)*20;  
+		    y=20;  
+		    context.moveTo(x,y);  
+	    } 
+
+    </script>  
+    </body>
+</html>

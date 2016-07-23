@@ -1,0 +1,11 @@
+/*
+* @Author: SunshineLXH
+* @Date:   2016-07-23 20:23:26
+* @Last Modified by:   SunshineLXH
+* @Last Modified time: 2016-07-23 20:41:38
+*/
+@mixin col ($width:50%) {
+	width: $width;
+	float: left;
+}
+

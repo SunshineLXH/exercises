@@ -1,0 +1,111 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+/**
+ * CONTENTS
+ *
+ * SETTINGS
+ * variables.............all variables
+ *
+ * TOOLS
+ *
+ * COMPONENTS
+ *reset..................Compass
+ * 
+ * BUSINESS
+ *
+ * BASE
+ * screen................current style
+ * 
+ */
+
+
+@import "variables", "mixin";
+
+/**
+ * 7
+ */
+@import 'normalize-version';
+
+/**
+ * 1
+ */
+@import 'normalize/base';
+
+/**
+ * 2
+ */
+@import 'normalize/html5';
+
+/**
+ * 3
+ */
+@import 'normalize/typography';
+
+/**
+ * 4
+ */
+@import 'normalize/groups';
+
+/**
+ * 5
+ */
+@import 'normalize/forms';
+
+/**
+ * 6
+ */
+@import 'normalize/tables';
+
+
+
+/**
+ * 8
+ */
+@import 'normalize/links';
+
+
+//headline style
+.headline {
+	font-family: $headline-ff;
+}
+
+.main-sec {
+	font-family: $main-sec-ff;
+
+	.headline {
+		font: {
+			family: $main-sec-ff;
+			size: 16px;
+		}
+	}
+
+	.detail {
+		font-size: 12px;
+	}
+}
+
+p {
+	color: hsl(270, 20%, 20%);
+}
+
+.webdemo-sec {
+	@include col();
+	
+	&:hover {
+		background-color: #f5f5f5;
+	}
+}
+
+%error {
+	color: #f00;
+}
+
+.serious-error {
+	@extend %error;
+	border: 1px #f00;
+}
+
+

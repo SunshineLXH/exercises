@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>响应式图片(测试未成功)</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+		<script src="//cdn.bootcss.com/picturefill/3.0.2/picturefill.min.js"></script>
+    </head>
+    <body>
+    <div>
+    	<h2>picture source media</h2>
+    	<picture>
+    		<source media="(max-width:480px)" srcset="http://data.huigeek.com/salad.jpg" >
+    		<source media="(max-width:640px)" srcset="http://data.huigeek.com/fishUonion.jpg" >
+    	</picture>
+    	<h2>srcset</h2>
+    	<img sizes="(min-width:900px) 900px,100vw"
+    		 srcset="http://data.huigeek.com/salad.jpg 480w,
+					 http://data.huigeek.com/fishUonion.jpg 640w,
+					 http://data.huigeek.com/beefUpotato.jpg 900w"
+    	src="http://data.huigeek.com/salad.jpg" alt="responsive images" />
+    </div>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>JS中组件的封装</title>
+    </head>
+    <body>
+		<input type="button" value="测试组件" />
+		<div id="dv">div</div> 分割线
+		<input type="button" value="删除子元素组件" /> 
+		<div id='box'>box
+			<p>这是第一个p</p><p>this is the second p</p><p>this is the third p</p><p>this is the fourth p</p>
+		</div>
+
+    	<script>
+    		/**
+    		 * 定义一个类
+    		 * 类中增加一个方法
+    		 * body中定义一个dom节点
+    		 * 脚本中把dom结点和类定义结合起来，实现特定的组件功能
+    		 */
+    		
+    		function testM(id) {
+    			var aNode = document.getElementById(id);
+    			this.addEle = function() {
+    				aNode.innerHTML += '<p>123</p>';
+    			}
+    			return this;
+    		}
+
+    		function test() {
+    			var t = new testM('dv');
+    			t.addEle();
+    		}
+	    	
+    		document.getElementsByTagName('input')[0].onclick = function() { test(); };
+
+
+    		function rmEle(arg) {
+    			var aEle = document.getElementById(arg);
+    			this.rmEle = function() {
+    				aEle.removeChild(aEle.childNodes[1])
+    			}
+
+    			return this;
+    		}
+
+    		function test2() {
+    			var ins = new rmEle('box');
+    			ins.rmEle();
+    		}
+
+    		document.getElementsByTagName('input')[1].onclick = function() { test2() };
+
+    	</script>
+
+    </body>
+</html>

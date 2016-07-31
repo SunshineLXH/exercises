@@ -41,27 +41,7 @@
   	var boomSeconds = 4;
   	var lastShotX, lastShotY;
   	var newShot = false;
-  	function mouseClicked() {
-  	  if (scopeMode) {
-  	    // JUGAD TO COUNTER ZOOM
-  	    lastShotX = zoomCenterX + (binoxCenterX - zoomCenterX) / zoomLevel;
-  	    lastShotY = zoomCenterY + (binoxCenterY - zoomCenterY) / zoomLevel;
-  	    newShot = true;
-  	    for (j = 0; j < starCount; j++) {
-  	      if (Math.abs(starX[j] - lastShotX) <= shotRadius &&
-  	        Math.abs(starY[j] - lastShotY) <= shotRadius) {
-  	        starDisplay[j]--;
-  	      }
-  	    }
-  	  }
-  	}
-  	function mouseMoved(evt) {
-  	  binoxCenterX = evt.offsetX;
-  	  binoxCenterY = evt.offsetY;
-  	  if (zoomMode) {
-  	    setBinoxCoordinates();
-  	  }
-  	}
+  	
   	function binoxToScope() {
   	  if (binoxCenterXDeviation <= scopeDeviation) {
   	    binoxCenterXDeviation = scopeDeviation;

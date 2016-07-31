@@ -24,58 +24,32 @@
 
 @import "variables", "mixin";
 
-/**
- * 7
- */
 @import 'normalize-version';
 
-/**
- * 1
- */
 @import 'normalize/base';
 
-/**
- * 2
- */
 @import 'normalize/html5';
 
-/**
- * 3
- */
 @import 'normalize/typography';
 
-/**
- * 4
- */
 @import 'normalize/groups';
 
-/**
- * 5
- */
 @import 'normalize/forms';
 
-/**
- * 6
- */
 @import 'normalize/tables';
 
-
-
-/**
- * 8
- */
 @import 'normalize/links';
 
 
 //headline style
-.headline {
+body {
 	font-family: $headline-ff;
 }
 
 .main-sec {
 	font-family: $main-sec-ff;
 
-	.headline {
+	body {
 		font: {
 			family: $main-sec-ff;
 			size: 16px;
